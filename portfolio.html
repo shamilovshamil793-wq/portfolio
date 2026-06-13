@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шамиль Шамилов | QA Engineer & Python Developer</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        /* ===== THEMES ===== */
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #667eea;
+            --accent-hover: #764ba2;
+            --border: #2a2a2a;
+        }
+
+        body.light {
+            --bg-primary: #f5f7fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b7280;
+            --accent: #4f46e5;
+            --accent-hover: #6366f1;
+            --border: #e5e7eb;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(var(--bg-primary), 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px 40px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .typed-text {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .hero-description {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* ===== PHOTO ===== */
+        .hero-photo {
+            flex: 1;
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Заглушка, если нет фото */
+        .photo-placeholder {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            color: white;
+            margin: 0 auto;
+            border: 4px solid var(--accent);
+        }
+
+        /* ===== STATS ===== */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 4rem 0;
+        }
+
+        .stat-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* ===== PROJECTS ===== */
+        .section {
+            margin: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-badge {
+            background: rgba(102, 126, 234, 0.15);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            color: var(--accent);
+        }
+
+        /* ===== SKILLS ===== */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            transition: all 0.3s;
+            cursor: default;
+            font-size: 0.9rem;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .contact-card i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--bg-primary);
+                flex-direction: column;
+                padding: 2rem;
+                transition: left 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-photo, .photo-placeholder {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">SS</div>
+        <div class="mobile-menu" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="#home">Главная</a>
+            <a href="#projects">Проекты</a>
+            <a href="#skills">Навыки</a>
+            <a href="#contact">Контакты</a>
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">🔍 Открыт к стажировке/работе</span>
+            <h1 class="hero-title">
+                Привет, я<br>
+                <span class="highlight">Шамиль Шамилов</span>
+            </h1>
+            <div class="typed-text" id="typedText"></div>
+            <p class="hero-description">
+                Начинающий QA инженер и Python разработчик.
+                Прошёл интенсивное обучение по программе "Разработчик" с октября 2025 года.
+                Готов к стажировке 6+ часов в день. Ищу возможность применить знания на практике.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn-primary">
+                    <i class="fas fa-code"></i> Мои проекты
+                </a>
+                <a href="https://github.com/shamilovshamil793-wq" target="_blank" class="btn-outline">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+        <div class="hero-photo">
+
+            <img src="foto.jpg" alt="Шамиль Шамилов" class="profile-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="photo-placeholder" style="display: none;">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-number">5+</div>
+            <div>Пет-проектов</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">6+</div>
+            <div>Часов в день</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div>Готов к обучению</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">🎓</div>
+            <div>Диплом разработчика</div>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="section-title">📁 Мои проекты</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-icon">📊</div>
+                <div class="project-title">Парсеры данных</div>
+                <p>Парсинг API JSONPlaceholder и Wikipedia. Сохранение в JSON/CSV.</p>
+                <div class="project-tech">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Requests</span>
+                    <span class="tech-badge">JSON</span>
+                </div>
+                <a href="https://github.com/shamilovshamil793-wq/vacancy_parser" target="_blank" style="color: var(--accent);">GitHub →</a>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">🤖</div>
+                <div class="project-title">Telegram бот</div>
+                <p>Поиск вакансий на hh.ru. Команды /start, /help, /popular.</p>
+                <div class="project-tech">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">python-telegram-bot</span>
+                    <span class="tech-badge">API</span>
+                </div>
+                <a href="https://github.com/shamilovshamil793-wq/telegram_vacancy_bot" target="_blank" style="color: var(--accent);">GitHub →</a>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">🧪</div>
+                <div class="project-title">API автотесты</div>
+                <p>Набор автотестов для REST API. Pytest + JSON Schema.</p>
+                <div class="project-tech">
+                    <span class="tech-badge">Pytest</span>
+                    <span class="tech-badge">Requests</span>
+                    <span class="tech-badge">JSON Schema</span>
+                </div>
+                <a href="https://github.com/shamilovshamil793-wq/api_tests" target="_blank" style="color: var(--accent);">GitHub →</a>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">📝</div>
+                <div class="project-title">TODO-лист на Flask</div>
+                <p>Веб-приложение с SQLite и REST API.</p>
+                <div class="project-tech">
+                    <span class="tech-badge">Flask</span>
+                    <span class="tech-badge">SQLite</span>
+                    <span class="tech-badge">HTML/CSS</span>
+                </div>
+                <a href="https://github.com/shamilovshamil793-wq/todo_app" target="_blank" style="color: var(--accent);">GitHub →</a>
+            </div>
+            <!-- Новый проект: Асинхронное платежное API -->
+            <div class="project-card">
+                <div class="project-icon">⚡</div>
+                <div class="project-title">Асинхронное платежное API</div>
+                <p>Асинхронное REST API на Sanic + PostgreSQL. JWT-авторизация, роли пользователя и администратора, вебхук пополнения баланса с SHA256 подписью и защитой от повторных транзакций. Docker Compose.</p>
+                <div class="project-tech">
+                    <span class="tech-badge">Sanic</span>
+                    <span class="tech-badge">PostgreSQL</span>
+                    <span class="tech-badge">SQLAlchemy</span>
+                    <span class="tech-badge">JWT</span>
+                    <span class="tech-badge">Docker</span>
+                    <span class="tech-badge">SHA256</span>
+                </div>
+                <a href="https://github.com/shamilovshamil793-wq/async_payments_api" target="_blank" style="color: var(--accent);">GitHub →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section (Расширенная) -->
+    <section id="skills" class="section">
+        <h2 class="section-title">⚡ Мои Навыки</h2>
+        <div class="skills-grid">
+            <span class="skill-card">Python</span>
+            <span class="skill-card">Sanic</span>
+            <span class="skill-card">FastAPI</span>
+            <span class="skill-card">Pytest</span>
+            <span class="skill-card">Requests</span>
+            <span class="skill-card">Flask</span>
+            <span class="skill-card">Django</span>
+            <span class="skill-card">SQL / SQLite</span>
+            <span class="skill-card">PostgreSQL</span>
+            <span class="skill-card">NoSQL</span>
+            <span class="skill-card">SQLAlchemy</span>
+            <span class="skill-card">JWT</span>
+            <span class="skill-card">Docker</span>
+            <span class="skill-card">Git / GitHub</span>
+            <span class="skill-card">REST API</span>
+            <span class="skill-card">JSON / XML</span>
+            <span class="skill-card">HTML5 / CSS3</span>
+            <span class="skill-card">JavaScript</span>
+            <span class="skill-card">DOM / BOM</span>
+            <span class="skill-card">ООП</span>
+            <span class="skill-card">MVC / SOLID</span>
+            <span class="skill-card">Паттерны проектирования</span>
+            <span class="skill-card">Многопоточность</span>
+            <span class="skill-card">Сетевое программирование</span>
+            <span class="skill-card">Linux / Bash</span>
+            <span class="skill-card">Scrum / Ганта</span>
+            <span class="skill-card">Postman</span>
+            <span class="skill-card">VS Code</span>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Связаться со мной</h2>
+        <div class="contact-grid">
+            <a href="https://github.com/shamilovshamil793-wq" target="_blank" class="contact-card">
+                <i class="fab fa-github"></i>
+                <h3>GitHub</h3>
+                <p>Все проекты здесь</p>
+            </a>
+            <a href="#" class="contact-card">
+                <i class="fab fa-telegram"></i>
+                <h3>Telegram</h3>
+                <p>@Musashi47</p>
+            </a>
+            <a href="mailto:shamilovshamil793@gmail.com" class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>shamilovshamil793@gmail.com</p>
+            </a>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>© 2026 Шамилов Шамиль | В поиске стажировки и работы / Python Developer</p>
+
+</footer>
+
+<script>
+    // Typing effect
+    const roles = [
+        "🧪 QA Engineer",
+        "🐍 Python Developer",
+        "🤖 Автоматизатор тестирования",
+        "📊 Тестировщик API",
+        "🔥 Ищу стажировку"
+    ];
+
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typedTextElement = document.getElementById("typedText");
+
+    function typeEffect() {
+        const currentRole = roles[roleIndex];
+        if (isDeleting) {
+            typedTextElement.textContent = currentRole.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            typedTextElement.textContent = currentRole.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        if (!isDeleting && charIndex === currentRole.length) {
+            isDeleting = true;
+            setTimeout(typeEffect, 2000);
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            setTimeout(typeEffect, 500);
+        } else {
+            setTimeout(typeEffect, isDeleting ? 50 : 100);
+        }
+    }
+
+    typeEffect();
+
+    // Theme toggle
+    function toggleTheme() {
+        document.body.classList.toggle('light');
+        const icon = document.querySelector('.theme-toggle i');
+        if (document.body.classList.contains('light')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
+    }
+
+    // Mobile menu
+    function toggleMenu() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('active');
+    }
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('navLinks').classList.remove('active');
+        });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
